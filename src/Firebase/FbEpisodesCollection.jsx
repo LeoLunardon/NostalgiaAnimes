@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  doc,
-  where,
-  query,
-  collectionGroup,
-} from "firebase/firestore";
+import { getFirestore, getDocs, collectionGroup } from "firebase/firestore";
 import FirebaseConfig from "./FbConfig";
 
 const firebaseApp = FirebaseConfig;
 const db = getFirestore(firebaseApp);
 
-export default function FbEpisodesCollection(animeId) {
+export default function FbEpisodesCollection(animeId, order) {
   const [episodeLinks, setEpisodeLinks] = useState([]);
 
   useEffect(() => {
@@ -25,32 +17,28 @@ export default function FbEpisodesCollection(animeId) {
         const episodes = [];
 
         episodeSnapshot.forEach((doc) => {
-          console.log("Documento:", doc.id);
-          console.log("Parent Parent ID:", doc.ref.parent.parent.id);
-
           if (doc.ref.parent.parent.id === animeId) {
             const episodeData = doc.data();
             if (episodeData.url) {
-              episodes.push({ episode: episodeData.url, order: episodeData.order });
+              episodes.push({
+                episode: episodeData.url,
+                order: episodeData.order,
+              });
             }
           }
         });
 
-        // Ordenar os episódios com base no campo "order"
+        // Ordernar a lista de episódios com base no campo order
         episodes.sort((a, b) => a.order - b.order);
 
         setEpisodeLinks(episodes);
-        console.log("Episódios:");
-        episodes.forEach((episode, index) => {
-          console.log(index, ":", episode.episode);
-        });
       } catch (error) {
-        console.error("Erro ao buscar episódios:", error);
+        console.error("Erro ao buscar episódios na base de dados:", error);
       }
     };
 
     fetchEpisodeLinks();
-  }, [animeId]);
+  }, [animeId, order]);
 
   return episodeLinks;
 }
