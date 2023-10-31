@@ -16,7 +16,13 @@ export default function FbAnimeCollection() {
 
     animeSnapshot.forEach((doc) => {
       const anime = doc.data();
-      animeData.push({ id: doc.id, ...anime });
+      const animeWithUrl = {
+        id: doc.id,
+        ...anime,
+        urlCapa: anime.urlCapa, // Adicione essa linha para capturar a URL da capa do anime
+      };
+      animeData.push(animeWithUrl);
+      console.log(animeWithUrl);
     });
 
     setAnimeData(animeData);
@@ -24,6 +30,7 @@ export default function FbAnimeCollection() {
 
   useEffect(() => {
     fetchAnimeData();
+
   }, []);
 
   return animeData;
