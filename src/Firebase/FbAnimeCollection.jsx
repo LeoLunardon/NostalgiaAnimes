@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { initializeApp } from "firebase/app";
-import { doc, getFirestore, getDocs, collection } from "firebase/firestore";
+import { getFirestore, getDocs, collection } from "firebase/firestore";
 import FirebaseConfig from "./FbConfig";
 
 const firebaseApp = FirebaseConfig;
 
 const db = getFirestore(firebaseApp);
-const animesCollectionRef = collection(db, "Animes");
+const animesCollectionRef = collection(db, "/Animes");
 
 export default function FbAnimeCollection() {
   const [animeData, setAnimeData] = useState([]);
