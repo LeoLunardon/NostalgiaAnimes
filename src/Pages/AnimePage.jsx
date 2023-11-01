@@ -1,8 +1,8 @@
 import React from "react";
 import FbAnimeCollection from "../Firebase/FbAnimeCollection";
 import FbEpisodesCollection from "../Firebase/FbEpisodesCollection";
-import AnimeDetail from "../Components/AnimeDetail";
-import EpisodeList from "../Components/EpisodeList";
+import AnimeDetail from "../Components/AnimeDetail/AnimeDetail";
+import EpisodeList from "../Components/AnimeDetail/EpisodeList";
 import { useParams } from "react-router-dom";
 
 const AnimePage = () => {

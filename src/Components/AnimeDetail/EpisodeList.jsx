@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import FbEpisodesCollection from "../Firebase/FbEpisodesCollection";
+import FbEpisodesCollection from "../../Firebase/FbEpisodesCollection";
 
 const EpisodeList = ({ animeId, animeData }) => {
   const [episodes, setEpisodes] = useState([]);
