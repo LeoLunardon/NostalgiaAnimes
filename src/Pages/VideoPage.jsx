@@ -31,15 +31,19 @@ const VideoPage = () => {
         <NavBar />
         <RankedAnimes />
       </div>
-      <h2>Assistir Episódio {episodeNumber}</h2>
+      <h2 className="text-2xl inline-block ml-10 text-white ">
+        Assistir Episódio {episodeNumber}
+      </h2>
       {episodeUrl && (
-        <iframe
-          allow="fullscreen"
-          src={episodeUrl}
-          title={`Episódio ${episodeNumber}`}
-          width="800"
-          height="600"
-        />
+      <div className="ml-10">
+          <iframe
+            allow="fullscreen"
+            src={episodeUrl}
+            title={`Episódio ${episodeNumber}`}
+            width="800"
+            height="450"
+          />
+        </div>
       )}
     </div>
   );
