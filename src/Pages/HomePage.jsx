@@ -11,8 +11,8 @@ export default function HomePage() {
   return (
     <div>
       <NavBar />
-      <div className="flex flex-col items-center mt-10">
-        <ul className="flex  gap-10">
+      <div className="flex  flex-col items-center mt-10">
+        <ul className="flex w-11/12 flex-wrap gap-10">
           {animeData.map((anime) => (
             <li className="text-center" key={anime.id}>
               <Link   to={`/anime/${anime.id}`}>
