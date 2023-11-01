@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import NavBar from "../Components/NavBar/NavBar";
+import RankedAnimes from "../Components/Home/RankedAnimes";
 import FbEpisodesCollection from "../Firebase/FbEpisodesCollection";
 
 const VideoPage = () => {
@@ -25,6 +27,10 @@ const VideoPage = () => {
 
   return (
     <div>
+      <div>
+        <NavBar />
+        <RankedAnimes />
+      </div>
       <h2>Assistir Episódio {episodeNumber}</h2>
       {episodeUrl && (
         <iframe
