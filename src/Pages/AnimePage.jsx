@@ -6,9 +6,9 @@ import EpisodeList from "../Components/EpisodeList";
 import { useParams } from "react-router-dom";
 
 const AnimePage = () => {
-  const { animeId, order } = useParams();
+  const { animeId } = useParams();
   const animeDataCollection = FbAnimeCollection();
-  const animeEpisodesCollection = FbEpisodesCollection(animeId, order);
+  const animeEpisodesCollection = FbEpisodesCollection(animeId);
 
   const animeData = animeDataCollection.find((anime) => anime.id === animeId);
 
@@ -18,7 +18,7 @@ const AnimePage = () => {
       <EpisodeList
         episodeLinks={animeEpisodesCollection}
         animeId={animeId}
-        order={order}
+        animeData={animeData}
       />
     </div>
   );

@@ -19,10 +19,10 @@ export default function FbAnimeCollection() {
       const animeWithUrl = {
         id: doc.id,
         ...anime,
-        urlCapa: anime.urlCapa, // Adicione essa linha para capturar a URL da capa do anime
+        urlCapa: anime.urlCapa, 
       };
       animeData.push(animeWithUrl);
-      console.log(animeWithUrl);
+      
     });
 
     setAnimeData(animeData);

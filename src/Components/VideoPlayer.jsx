@@ -1,12 +1,15 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import FbEpisodeVideo from "../Firebase/FbEpisodeVideo";
+const VideoPlayer = () => {
+  const { animeId, Index } = useParams();
+  const videoUrl = FbEpisodeVideo(animeId);
 
-const VideoPlayer = ({ videoUrl }) => {
   return (
     <div>
-      <video controls>
-        <source src={videoUrl} type="video/mp4"></source>
-        Your browser does not support the video tag.
-      </video>
+      <h1>Video Page</h1>
+      <p>Anime ID: {animeId}</p>
+      <iframe src={videoUrl} frameBorder="0"></iframe>
     </div>
   );
 };

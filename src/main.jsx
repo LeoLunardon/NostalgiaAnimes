@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <AnimePage />,
   },
   {
-    path: "/anime/:animeId/:order",
+    path: "/video/:animeId/:episodeNumber",
     element: <VideoPage />,
   },
 ]);

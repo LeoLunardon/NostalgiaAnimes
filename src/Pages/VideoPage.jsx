@@ -1,18 +1,38 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import VideoPlayer from "../Components/VideoPlayer";
-import FbEpisodeVideo from "../Firebase/FbEpisodeVideo";
+import FbEpisodesCollection from "../Firebase/FbEpisodesCollection";
 
 const VideoPage = () => {
-  const { animeId, order } = useParams();
-  const videoUrl = FbEpisodeVideo(animeId, order);
+  const { animeId, episodeNumber } = useParams();
+  const [episodeUrl, setEpisodeUrl] = useState(null);
+
+  useEffect(() => {
+    const fetchEpisodeUrl = async () => {
+      const episodesData = await FbEpisodesCollection(animeId);
+      const episode = episodesData.find(
+        (e) => e.episodeNumber === parseInt(episodeNumber)
+      );
+
+      if (episode) {
+        setEpisodeUrl(episode.url);
+      } else {
+        console.error("URL do episódio não encontrado");
+      }
+    };
+
+    fetchEpisodeUrl();
+  }, [animeId, episodeNumber]);
+
   return (
     <div>
-      <h1>Página de Vídeo</h1>
-      {videoUrl ? (
-        <VideoPlayer videoUrl={videoUrl} />
-      ) : (
-        <p>Carregando o vídeo...</p>
+      <h2>Assistir Episódio {episodeNumber}</h2>
+      {episodeUrl && (
+        <iframe
+          src={episodeUrl}
+          title={`Episódio ${episodeNumber}`}
+          width="800"
+          height="600"
+        />
       )}
     </div>
   );

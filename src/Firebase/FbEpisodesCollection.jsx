@@ -1,44 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { getFirestore, getDocs, collectionGroup } from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import FirebaseConfig from "./FbConfig";
 
 const firebaseApp = FirebaseConfig;
 const db = getFirestore(firebaseApp);
 
-export default function FbEpisodesCollection(animeId, order) {
-  const [episodeLinks, setEpisodeLinks] = useState([]);
+const FbEpisodesCollection = async (animeId) => {
+  try {
+    const animeDocRef = doc(db, "Animes", animeId);
+    const animeDocSnapshot = await getDoc(animeDocRef);
 
-  useEffect(() => {
-    const fetchEpisodeLinks = async () => {
-      try {
-        const episodesCollectionRef = collectionGroup(db, "Links");
-        const episodeSnapshot = await getDocs(episodesCollectionRef);
+    if (animeDocSnapshot.exists()) {
+      const animeData = animeDocSnapshot.data();
 
-        const episodes = [];
-
-        episodeSnapshot.forEach((doc) => {
-          if (doc.ref.parent.parent.id === animeId) {
-            const episodeData = doc.data();
-            if (episodeData.url) {
-              episodes.push({
-                episode: episodeData.url,
-                order: episodeData.order,
-              });
-            }
-          }
-        });
-
-        // Ordernar a lista de episódios com base no campo order
-        episodes.sort((a, b) => a.order - b.order);
-
-        setEpisodeLinks(episodes);
-      } catch (error) {
-        console.error("Erro ao buscar episódios na base de dados:", error);
+      if (typeof animeData.Episodios === "object") {
+        const episodes = Object.entries(animeData.Episodios)
+          .filter(([key, episode]) => episode !== "null")
+          .map(([key, episode], index) => ({
+            url: episode,
+            episodeNumber: parseInt(key),
+          }));
+        return episodes;
+      } else {
+        console.error("A propriedade 'Episodios' não é um objeto");
+        return [];
       }
-    };
-
-    fetchEpisodeLinks();
-  }, [animeId, order]);
-
-  return episodeLinks;
-}
+    } else {
+      console.error("Documento de anime não encontrado");
+      return [];
+    }
+  } catch (error) {
+    console.error("Erro ao buscar episódios na base de dados:", error);
+    return [];
+  }
+};
+export default FbEpisodesCollection;

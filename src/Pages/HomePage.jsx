@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import FbConfig from "../Firebase/FbConfig";
 import NavBar from "../Components/NavBar";
 import FbAnimeCollection from "../Firebase/FbAnimeCollection";
-import Cards from "../Components/Cards";
 const firebaseApp = FbConfig;
 
 export default function HomePage() {
@@ -24,7 +23,6 @@ export default function HomePage() {
           ))}
         </ul>
       </div>
-      <Cards />
     </div>
   );
 }
