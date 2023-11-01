@@ -8,10 +8,10 @@ export default function HomePage() {
   return (
     <div>
       <NavBar />
+          <RankedAnimes />
       <div className="absolute">
         <AnimeList />
         <div>
-          <RankedAnimes />
         </div>
       </div>
     </div>
