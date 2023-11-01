@@ -34,6 +34,7 @@ const VideoPage = () => {
       <h2>Assistir Episódio {episodeNumber}</h2>
       {episodeUrl && (
         <iframe
+          allow="fullscreen"
           src={episodeUrl}
           title={`Episódio ${episodeNumber}`}
           width="800"
