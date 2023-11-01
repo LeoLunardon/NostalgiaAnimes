@@ -15,7 +15,7 @@ const EpisodeList = ({ animeId, animeData }) => {
   }, [animeId]);
 
   return (
-    <div className="text-white mt-10">
+    <div className="text-white 2xl:ml-5 mt-10">
       <h2 className="text-2xl">Lista de Episódios de {animeData?.Nome}</h2>
       <div  className="w-2/3 mt-10 h-96 overflow-y-auto">
         <table className="w-full text-center">

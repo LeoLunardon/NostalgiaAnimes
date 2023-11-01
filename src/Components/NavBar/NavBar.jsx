@@ -2,11 +2,11 @@ import React from "react";
 
 const NavBar = () => {
   return (
-    <div className="w-full  z-40 flex top-0 h-28">
+    <div className="w-full mb-10 z-40 flex top-0 h-28">
       <a href="/">
         <img
           src="https://i.imgur.com/hCoK4mY.png"
-          className="w-2/12 absolute -top-12 left-0"
+          className="w-60 absolute -top-12 left-0"
           alt=""
         />
       </a>

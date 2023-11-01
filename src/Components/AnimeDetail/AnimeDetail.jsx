@@ -9,7 +9,7 @@ const AnimeDetail = ({ animeData }) => {
       <div>
         <RankedAnimes />
       </div>
-      <div className="flex gap-5 p-4  bg-slate-900 w-2/3 border rounded-3xl  ">
+      <div className="flex gap-5 p-4 2xl:ml-5 bg-slate-900 w-2/3 border rounded-3xl  ">
         <img src={animeData?.urlCapa} className="w-40 border-4  h-60" alt="" />
         <div className="text-white flex flex-col gap-2">
           <h2 className="text-xl">Detalhes do Anime</h2>
