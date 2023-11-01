@@ -31,9 +31,11 @@ const AnimeList = () => {
     <div>
       <div className="flex flex-col items-start pl-10 mt-10">
         <div className="mb-10">
-          <label className="text-lg p-1 text-white " htmlFor="sortSelect">Ordenar por : </label>
+          <label className="text-lg p-1 text-white " htmlFor="sortSelect">
+            Ordenar por :{" "}
+          </label>
           <select
-          className="p-1 bg-gray-800 text-white"
+            className="p-1 bg-gray-800 text-white"
             id="sortSelect"
             onChange={(e) => {
               if (e.target.value === "A-Z") {

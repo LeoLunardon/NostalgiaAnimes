@@ -14,12 +14,16 @@ const AnimePage = () => {
 
   return (
     <div>
-      <AnimeDetail animeData={animeData} />
-      <EpisodeList
-        episodeLinks={animeEpisodesCollection}
-        animeId={animeId}
-        animeData={animeData}
-      />
+      <div>
+        <AnimeDetail animeData={animeData} />
+      </div>
+      <div className="ml-5">
+        <EpisodeList
+          episodeLinks={animeEpisodesCollection}
+          animeId={animeId}
+          animeData={animeData}
+        />
+      </div>
     </div>
   );
 };

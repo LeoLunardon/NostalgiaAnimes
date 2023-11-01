@@ -15,22 +15,25 @@ const EpisodeList = ({ animeId, animeData }) => {
   }, [animeId]);
 
   return (
-    <div className="text-white">
+    <div className="text-white mt-10">
       <h2 className="text-2xl">Lista de Episódios de {animeData?.Nome}</h2>
-      <div className="w-1/2 h-96 overflow-y-auto">
+      <div  className="w-2/3 mt-10 h-96 overflow-y-auto">
         <table className="w-full text-center">
           <thead>
             <tr>
-              <th className="p-2">Episódio</th>
-              <th className="p-2">Assistir</th>
+              <th className="p-2 sticky top-0 bg-gray-950" colSpan="2">
+                Episódios
+              </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="max-h-80  overflow-y-auto">
             {episodes.map((episode) => (
               <tr
                 key={episode.episodeNumber}
                 className={
-                  episode.episodeNumber % 2 === 0 ? "bg-gray-800" : "bg-gray-900"
+                  episode.episodeNumber % 2 === 0
+                    ? "bg-gray-800"
+                    : "bg-gray-900"
                 }
               >
                 <td className="p-2">Episódio {episode.episodeNumber}</td>
