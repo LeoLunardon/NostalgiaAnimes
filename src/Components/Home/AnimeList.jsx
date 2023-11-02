@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import FbAnimeCollection from "../../Firebase/FbAnimeCollection";
-
+import FilterInput from "../Home/FilterInput";
 
 const AnimeList = () => {
   const animeData = FbAnimeCollection();
@@ -24,32 +24,50 @@ const AnimeList = () => {
     setSortBy("Z-A");
   };
 
+  // Adicione um evento de mudança para atualizar o valor do filtro
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+  // Adicione uma função para aplicar o filtro
+  const applyFilter = (filter) => {
+    const filteredData = animeData.filter((anime) =>
+      anime.Nome.toLowerCase().includes(filter.toLowerCase())
+    );
+    setSortedData(filteredData);
+  };
+
   useEffect(() => {
     setSortedData(animeData);
   }, [animeData]);
 
   return (
     <div>
-      <div className="flex flex-col  items-start pl-10 mt-10">
-        <div className="mb-10">
-          <label className="text-lg p-1 text-white " htmlFor="sortSelect">
-            Ordenar por :{" "}
-          </label>
-          <select
-            className="p-1 bg-gray-800 text-white"
-            id="sortSelect"
-            onChange={(e) => {
-              if (e.target.value === "A-Z") {
-                sortAlphabetically();
-              } else if (e.target.value === "reverse") {
-                reverseAlphabetically();
-              }
-            }}
-          >
-            <option value="">Selecione...</option>
-            <option value="A-Z">Nome (A-Z)</option>
-            <option value="reverse">Inverter Ordem</option>
-          </select>
+      <div className="flex flex-col items-start pl-10 mt-10">
+        <div className="flex gap-20">
+          <div className="mb-10">
+            <label className="text-lg p-1 text-white " htmlFor="sortSelect">
+              Ordenar por:{" "}
+            </label>
+            <select
+              className="p-2 bg-gray-800 text-white"
+              id="sortSelect"
+              onChange={(e) => {
+                if (e.target.value === "A-Z") {
+                  sortAlphabetically();
+                } else if (e.target.value === "reverse") {
+                  reverseAlphabetically();
+                }
+              }}
+            >
+              <option value="">Selecione...</option>
+              <option value="A-Z">Nome (A-Z)</option>
+              <option value="reverse">Inverter Ordem</option>
+            </select>
+          </div>
+          <div>
+            <FilterInput onFilter={applyFilter} />
+          </div>
         </div>
         <ul className="flex md:w-2/3 2xl:w-11/12 flex-wrap gap-4">
           {sortedData.map((anime) => (

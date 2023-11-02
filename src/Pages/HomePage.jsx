@@ -1,4 +1,4 @@
-import FbConfig from "../Firebase/FbConfig";
+
 import NavBar from "../Components/NavBar/NavBar";
 import AnimeList from "../Components/Home/AnimeList";
 import RankedAnimes from "../Components/Home/RankedAnimes";

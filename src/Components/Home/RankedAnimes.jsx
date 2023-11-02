@@ -2,10 +2,10 @@ import React from "react";
 
 const RankedAnimes = () => {
   return (
-    <div className="absolute  right-5 top-56">
-      <ul class="w-96 font-medium flex flex-col gap-2 text-gray-900  rounded-lg">
+    <div className="absolute  right-5 top-36">
+      <ul class="w-96 font-medium hidden lg:flex flex-col gap-2 text-gray-900  rounded-lg">
         <div className="flex-row">
-          <li className="text-white  text-2xl">
+          <li className="text-white mb-4  text-2xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
