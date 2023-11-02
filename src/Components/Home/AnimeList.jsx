@@ -44,7 +44,7 @@ const AnimeList = () => {
   return (
     <div>
       <div className="flex flex-col items-start pl-10 mt-10">
-        <div className="flex gap-20">
+        <div className="flex sm:flex-row flex-col sm:gap-20">
           <div className="mb-10">
             <label className="text-lg p-1 text-white " htmlFor="sortSelect">
               Ordenar por:{" "}
@@ -65,11 +65,11 @@ const AnimeList = () => {
               <option value="reverse">Inverter Ordem</option>
             </select>
           </div>
-          <div>
+          <div className="mb-5">
             <FilterInput onFilter={applyFilter} />
           </div>
         </div>
-        <ul className="flex md:w-2/3 2xl:w-11/12 flex-wrap gap-4">
+        <ul className="flex md:w-2/3 sm:flex-row flex-col 2xl:w-11/12 flex-wrap gap-4">
           {sortedData.map((anime) => (
             <li className="text-center" key={anime.id}>
               <Link to={`/anime/${anime.id}`}>
