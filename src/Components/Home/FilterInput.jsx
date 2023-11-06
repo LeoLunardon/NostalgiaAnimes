@@ -21,7 +21,7 @@ const FilterInput = ({ onFilter }) => {
         value={filter}
         onChange={handleFilterChange}
         onKeyPress={handleKeyPress}
-        className="sm:w-96   p-2  rounded-xl bg-gray-800 text-gray-300  "
+        className="sm:w-96 p-2 rounded-xl bg-gray-800 text-gray-300  "
       ></input>
       <button className="ml-2 " onClick={() => onFilter(filter)}>
         <svg
